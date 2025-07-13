@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3334:3333"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app
+    command: npm run dev
+
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27018:27017"
